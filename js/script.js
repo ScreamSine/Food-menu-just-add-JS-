@@ -1,6 +1,32 @@
 const parentTabs = document.querySelector(".tabheader__items");
 const tabs = document.querySelectorAll(".tabheader__item");
 const tabContent = document.querySelectorAll(".tabcontent");
+const modalTrigger = document.querySelectorAll("[data-modal]");
+const modal = document.querySelector(".modal");
+const closeModal = document.querySelector("[data-close]");
+const timer = setTimeout(open, 15000);
+
+function close() {
+    modal.style.display = "none";
+    document.body.style.overflow = "scroll";
+}
+
+function open() {
+    modal.classList.add("opened");
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden";
+    clearInterval(timer);
+}
+
+function showModalScroll() {
+    if (
+        window.pageYOffset + document.documentElement.clientHeight >=
+        document.documentElement.scrollHeight
+    ) {
+        open();
+        window.removeEventListener("scroll", showModalScroll);
+    }
+}
 
 function hideContent() {
     tabContent.forEach((item) => {
@@ -29,3 +55,23 @@ parentTabs.addEventListener("click", (event) => {
         });
     }
 });
+
+modalTrigger.forEach((item) => {
+    item.addEventListener("click", open);
+});
+
+closeModal.addEventListener("click", close);
+
+modal.addEventListener("click", (e) => {
+    if (e.target.classList.contains("modal")) {
+        close();
+    }
+});
+
+document.addEventListener("keydown", (e) => {
+    if (e.code == "Escape" && modal.classList.contains("opened")) {
+        close();
+    }
+});
+
+window.addEventListener("scroll", showModalScroll);
