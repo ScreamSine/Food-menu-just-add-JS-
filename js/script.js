@@ -77,53 +77,6 @@ document.addEventListener("keydown", (e) => {
 
 window.addEventListener("scroll", showModalScroll);
 
-class Item {
-    constructor(img, alt, name, text, price) {
-        this.img = img;
-        this.alt = alt;
-        this.name = name;
-        this.text = text;
-        this.price = price;
-    }
-
-    render() {
-        let div = document.createElement("div");
-        div.classList.add("menu__item");
-        div.innerHTML = `
-            <img src="${this.img}" alt="${this.alt}" />
-            <h3 class="menu__item-subtitle">${this.name}</h3>
-                <div class="menu__item-descr">${this.text}</div>
-                <div class="menu__item-divider"></div>
-            <div class="menu__item-price">
-                <div class="menu__item-cost">Цена:</div>
-                <div class="menu__item-total"><span>${this.price}</span> ₽/день</div>
-            </div>
-        `;
-        ourMenu.append(div);
-    }
-}
-
-const div1 = new Item(
-    "img/tabs/vegy.jpg",
-    "vegy",
-    "Меню 'Фитнес'",
-    "Меню “Фитнес” - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!",
-    499
-);
-const div2 = new Item(
-    "img/tabs/elite.jpg",
-    "elite",
-    "Меню 'Премиум'",
-    "В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!",
-    999
-);
-const div3 = new Item(
-    "img/tabs/post.jpg",
-    "post",
-    "Меню 'Постное'",
-    "Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.",
-    699
-);
 div1.render();
 div2.render();
 div3.render();
